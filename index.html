@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Cafe Menu</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!-- Custom style sheet -->
+  <link rel="stylesheet" type="text/css" href="cafe.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- based on example at https://www.w3schools.com/bootstrap/bootstrap_filters.asp -->
+</head>
+<body>
+
+<div class="container">
+  <h1>Cafe Menu</h1>
+  <input class="form-control" id="searchInput" type="text" placeholder="Search...">
+  <br>
+  <ul class="list-group" id="cafeMenu">
+    <a href="images/coffee.png">
+      <li class="list-group-item">
+        Coffee 
+        <img src="images/coffee.png" alt="coffee" class="menu-image"> 
+      </li>
+    </a>
+    <a href="images/hot_chocolate.png">
+      <li class="list-group-item">
+        Hot Chocolate
+        <img src="images/hot_chocolate.png" alt="hot chocolate" class="menu-image"> 
+      </li>
+    </a>
+    <a href="images/tea.png">
+      <li class="list-group-item">
+        Tea
+        <img src="images/tea.png" alt="tea" class="menu-image">
+      </li>
+    </a>
+    <a href="images/cookie.png">
+      <li class="list-group-item">
+        Cookie
+        <img src="images/cookie.png" alt="cookie" class="menu-image">
+      </li>
+    </a>
+    <a href="images/sandwich.png">
+      <li class="list-group-item">
+        Sandwich
+        <img src="images/sandwich.png" alt="sandwich" class="menu-image">
+      </li>
+    </a>
+    <a href="images/bagel.png">
+      <li class="list-group-item">
+        Bagel
+        <img src="images/bagel.png" alt="bagel" class="menu-image">
+      </li>
+    </a>
+  </ul>  
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#searchInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#cafeMenu li").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+</body>
+</html>

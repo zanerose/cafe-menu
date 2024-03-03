@@ -1,0 +1,21 @@
+body {
+	background-color: lightseagreen;
+}
+
+h1 {
+	color: darkblue;
+}
+
+.menu-image {
+	height: 48px;
+	float: right;
+}
+
+.list-group-item {
+	font-size: xx-large;
+}
+
+#searchInput {
+	height: 60px;
+	font-size: xx-large;
+}
