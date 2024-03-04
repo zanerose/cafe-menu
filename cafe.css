@@ -15,6 +15,8 @@
   font-weight: bold;
 }
 
+/* Currently using a fancy font for the title. Apple Chancery if the font exists. 
+As a backup, a fantasy or cursive font. */
 .page-header h1 {
 	font-family: Apple Chancery, fantasy, cursive;
 	font-weight: bold;
@@ -22,4 +24,12 @@
 	text-align: center;
 	margin: 10px;
 	padding: 10px;
+}
+
+/* Image of the logo to replace H1 header in page-header */
+.page-header img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
 }
