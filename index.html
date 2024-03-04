@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- This page was created based on the Bootstrap Filters examples at W3 Schools (https://www.w3schools.com/bootstrap/bootstrap_filters.asp) -->
 <head>
   <title>Cafe Menu</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <!-- Custom style sheet -->
-  <link rel="stylesheet" type="text/css" href="cafe.css">
+  
+  <!-- JavaScript library to simplify HTML DOM tree traversal and manipulation, jOuery (free, open-source)-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <!-- based on example at https://www.w3schools.com/bootstrap/bootstrap_filters.asp -->
+ 
+  <!-- Mobile-first front-end web development framework, Bootstrap (free, open-source) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- TODO: replace the custom css "cafe.css" after learning Bootstrap -->
+  <link rel="stylesheet" type="text/css" href="cafe.css">
 </head>
 <body>
 
+<!-- Each menu list item has text for the name of the item and an image of the item. The images are sized down to a height of 48px in "cafe.css". The list items are links that will show the full size image of the menu item when a menu item is selected. -->
+<!-- TODO: create a set of 48px icons for images in the list for faster loading -->
 <div class="container">
   <h1>Cafe Menu</h1>
-  <input class="form-control" id="searchInput" type="text" placeholder="Search...">
+  <input class="form-control form-control-lg" id="searchInput" type="text" placeholder="Search...">
   <br>
   <ul class="list-group" id="cafeMenu">
     <a href="images/coffee.png">
@@ -57,12 +64,26 @@
   </ul>  
 </div>
 
+<!-- The script below in jQuery is used to loop through each list item on the cafe menu to check if there are any text values that match the value input in the search bar. 
+
+The HTML document can't be manuipulated until it is ready, so the $(document).ready() method is used to run code as soon as the DOM (Document Object Model) is ready to be safely manipulated. 
+
+We then get the DOM element with the id "searchInput". To have our code run in response to user input, we can bind an event handler to the "keyup" event that is triggered when a key that has been pressed down is realeased. The event handler is a function passed in as a paramater called a clousre. 
+
+In jQuery $(this) is used to hold the element that you requested so you don't have to search the DOM again. So within the scope of the outer closure where the tolowerCase() method is first called, $(this) is the text typed into the search input. The method toLowerCase() is used to convert text to lower case. It is used on the text input and each list item so compairing them is case insensitive.
+
+The inner closure that is passed into the filter() method is a different scope and the $(this) in there no longer refers to the input text. Within the scope of the inner closure, it holds a list item in the cafe menu. The method toggle() when given no parameters will hide visible elements (display:none) and display visible ones. When given a boolean (true or false), it will hide if false and show if true. 
+
+The statement passed in as a parameter evaluates to a boolean:
+$(this).text().toLowerCase().indexOf(searchTerm) > -1
+It is true if the search text can be found in the current menu list item. If the search text can't be found in the list item, it will be hidden. 
+ -->
 <script>
 $(document).ready(function(){
   $("#searchInput").on("keyup", function() {
-    var value = $(this).val().toLowerCase();
+    var searchTerm = $(this).val().toLowerCase();
     $("#cafeMenu li").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) > -1)
     });
   });
 });
