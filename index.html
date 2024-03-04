@@ -67,7 +67,7 @@
   </ul>  
 </div>
 
-<!-- The script below in jQuery is used to loop through each list item on the cafe menu to check if there are any text values that match the value input in the search bar. 
+<!-- The script below in jQuery is used to loop through each list item on the cafe menu to check if there are any text values that match the value input in the search bar. Scripts can be placed in the head, but by placing the script in the body below all the html elements our page will load the HTML elements first to give the user visual feedback that the page is loading.
 
 The HTML document can't be manuipulated until it is ready, so the $(document).ready() method is used to run code as soon as the DOM (Document Object Model) is ready to be safely manipulated. 
 
@@ -75,7 +75,7 @@ We then get the DOM element with the id "searchInput". To have our code run in r
 
 In jQuery $(this) is used to hold the element that you requested so you don't have to search the DOM again. So within the scope of the outer closure where the tolowerCase() method is first called, $(this) is the text typed into the search input. The method toLowerCase() is used to convert text to lower case. It is used on the text input and each list item so compairing them is case insensitive.
 
-The inner closure that is passed into the filter() method is a different scope and the $(this) in there no longer refers to the input text. Within the scope of the inner closure, it holds a list item in the cafe menu. The method toggle() when given no parameters will hide visible elements (display:none) and display visible ones. When given a boolean (true or false), it will hide if false and show if true. 
+The each() method iterates over a jQuery object that contains elements such as an unordered list and executes the function passed in as a closure for each element. The inner closure that is passed into the each() method is a different scope and the $(this) in there no longer refers to the input text. Within the scope of the inner closure, $(this) holds a list item in the cafe menu. The method toggle() when given no parameters will hide visible elements (display:none) and display visible ones. When given a boolean (true or false), it will hide if false and show if true. 
 
 The statement passed in as a parameter evaluates to a boolean:
 $(this).text().toLowerCase().indexOf(searchTerm) > -1
@@ -85,8 +85,8 @@ It is true if the search text can be found in the current menu list item. If the
 $(document).ready(function(){
   $("#searchInput").on("keyup", function() {
     var searchTerm = $(this).val().toLowerCase();
-    $("#cafeMenu li").filter(function() {
-      $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) > -1)
+    $("#cafeMenu li").each(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) > -1);
     });
   });
 });
